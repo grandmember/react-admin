@@ -132,7 +132,7 @@ const germanMessages: TranslationMessages = {
             DESC: 'absteigend',
         },
         auth: {
-            auth_check_error: 'Bitte verbinden Sie sich um fortzufahren',
+            auth_check_error: 'Bitte anmelden Sie sich um fortzufahren',
             user_menu: 'Profil',
             username: 'Nutzername',
             password: 'Passwort',
@@ -155,7 +155,7 @@ const germanMessages: TranslationMessages = {
                 'Die Übersetzungen für die angegebene Sprache können nicht geladen werden.',
             canceled: 'Aktion abgebrochen',
             logged_out:
-                'Ihre Sitzung wurde beendet, bitte verbinden Sie sich neu.',
+                'Ihre Sitzung wurde beendet, bitte anmelden Sie sich erneut.',
             not_authorized:
                 'Sie sind nicht berechtigt, auf diese Ressource zuzugreifen.',
         },

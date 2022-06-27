@@ -116,7 +116,7 @@ const Menu = ({ dense = false }: MenuProps) => {
                     leftIcon={<visitors.icon />}
                     dense={dense}
                 />
-                <MenuItemLink
+                {/* <MenuItemLink
                     to="/segments"
                     state={{ _scrollToTop: true }}
                     primaryText={translate(`resources.segments.name`, {
@@ -124,9 +124,9 @@ const Menu = ({ dense = false }: MenuProps) => {
                     })}
                     leftIcon={<LabelIcon />}
                     dense={dense}
-                />
+                /> */}
             </SubMenu>
-            <MenuItemLink
+            {/* <MenuItemLink
                 to="/reviews"
                 state={{ _scrollToTop: true }}
                 primaryText={translate(`resources.reviews.name`, {
@@ -134,7 +134,7 @@ const Menu = ({ dense = false }: MenuProps) => {
                 })}
                 leftIcon={<reviews.icon />}
                 dense={dense}
-            />
+            /> */}
         </Box>
     );
 };

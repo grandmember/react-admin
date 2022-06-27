@@ -29,6 +29,8 @@ import {
 
 import Box from '@mui/material/Box';
 
+import Logo from './Logo';
+
 const LanguageDropdown = () => {
     const [locale, setLocale] = useLocaleState();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -192,13 +194,13 @@ const Login = () => {
                 >
                     <Box
                         sx={{
-                            padding: '3em',
+                            padding: '1em',
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar
+                        {/* <Avatar
                             sx={{
                                 bgcolor: 'secondary.main',
                                 width: '3em',
@@ -213,9 +215,11 @@ const Login = () => {
                                     height: '100%',
                                 }}
                             />
-                        </Avatar>
+                        </Avatar> */}
+
+                        <Logo />
                     </Box>
-                    <Box
+                    {/* <Box
                         sx={{
                             marginTop: '1em',
                             display: 'flex',
@@ -224,7 +228,20 @@ const Login = () => {
                         }}
                     >
                         Hint: demo / demo
+                    </Box> */}
+                    <Box
+                        sx={{
+                            // marginTop: '1em',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            // color: theme => theme.palette.grey[500],
+                        }}
+                    >
+                        <LanguageDropdown />
                     </Box>
+                    {/* <Box sx={{ marginTop: '1rem' }}>
+                        <LanguageDropdown />
+                    </Box> */}
                     <Box sx={{ padding: '0 1em 1em 1em' }}>
                         <Box sx={{ marginTop: '1em' }}>
                             <TextInput
@@ -250,7 +267,8 @@ const Login = () => {
                     </Box>
                     <CardActions
                         sx={{
-                            padding: '0 1em 1em 1em',
+                            // padding: '0 1em 1em 1em',
+                            // padding
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'center',
@@ -269,9 +287,9 @@ const Login = () => {
                             )}
                             {translate('ra.auth.sign_in')}
                         </Button>
-                        <Box sx={{ marginTop: '1rem' }}>
+                        {/* <Box sx={{ marginTop: '1rem' }}>
                             <LanguageDropdown />
-                        </Box>
+                        </Box> */}
                     </CardActions>
                 </Card>
 
