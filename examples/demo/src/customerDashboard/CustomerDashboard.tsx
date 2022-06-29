@@ -2,6 +2,8 @@ import React, { CSSProperties } from 'react';
 import { useMediaQuery, Theme } from '@mui/material';
 
 import WelcomeSuperuser from './WelcomeSuperuser';
+import ShoppingTable from './ShoppingTable';
+import ShoppingCart from './ShoppingCart';
 
 const styles = {
     flex: { display: 'flex' },
@@ -22,61 +24,71 @@ const CustomerDashboard = () => {
         theme.breakpoints.down('lg')
     );
 
-    return isXSmall ? (
-        <div>
-            <div style={styles.flexColumn as CSSProperties}>
-                <WelcomeSuperuser />
-                <WelcomeSuperuser />
-                <VerticalSpacer />
-                <WelcomeSuperuser />
-                <VerticalSpacer />
-                <WelcomeSuperuser />
-            </div>
-        </div>
-    ) : isSmall ? (
+    return (
         <div style={styles.flexColumn as CSSProperties}>
             <div style={styles.singleCol}>
-                <WelcomeSuperuser />
-            </div>
-            <div style={styles.flex}>
-                <WelcomeSuperuser />
+                <ShoppingCart />
                 <Spacer />
-                <WelcomeSuperuser />
-            </div>
-            <div style={styles.singleCol}>
-                <WelcomeSuperuser />
-            </div>
-            <div style={styles.singleCol}>
-                <WelcomeSuperuser />
+                <ShoppingTable />
             </div>
         </div>
-    ) : (
-        <>
-            <WelcomeSuperuser />
-            <div style={styles.flex}>
-                <div style={styles.leftCol}>
-                    <div style={styles.flex}>
-                        <WelcomeSuperuser />
-                        <Spacer />
-                        <WelcomeSuperuser />
-                    </div>
-                    <div style={styles.singleCol}>
-                        <WelcomeSuperuser />
-                    </div>
-                    <div style={styles.singleCol}>
-                        <WelcomeSuperuser />
-                    </div>
-                </div>
-                <div style={styles.rightCol}>
-                    <div style={styles.flex}>
-                        <WelcomeSuperuser />
-                        <Spacer />
-                        <WelcomeSuperuser />
-                    </div>
-                </div>
-            </div>
-        </>
     );
+
+    // return isXSmall ? (
+    //     <div>
+    //         <div style={styles.flexColumn as CSSProperties}>
+    //             <WelcomeSuperuser />
+    //             <WelcomeSuperuser />
+    //             <VerticalSpacer />
+    //             <WelcomeSuperuser />
+    //             <VerticalSpacer />
+    //             <WelcomeSuperuser />
+    //         </div>
+    //     </div>
+    // ) : isSmall ? (
+    //     <div style={styles.flexColumn as CSSProperties}>
+    //         <div style={styles.singleCol}>
+    //             <WelcomeSuperuser />
+    //         </div>
+    //         <div style={styles.flex}>
+    //             <WelcomeSuperuser />
+    //             <Spacer />
+    //             <WelcomeSuperuser />
+    //         </div>
+    //         <div style={styles.singleCol}>
+    //             <WelcomeSuperuser />
+    //         </div>
+    //         <div style={styles.singleCol}>
+    //             <WelcomeSuperuser />
+    //         </div>
+    //     </div>
+    // ) : (
+    //     <>
+    //         <WelcomeSuperuser />
+    //         <div style={styles.flex}>
+    //             <div style={styles.leftCol}>
+    //                 <div style={styles.flex}>
+    //                     <WelcomeSuperuser />
+    //                     <Spacer />
+    //                     <WelcomeSuperuser />
+    //                 </div>
+    //                 <div style={styles.singleCol}>
+    //                     <WelcomeSuperuser />
+    //                 </div>
+    //                 <div style={styles.singleCol}>
+    //                     <WelcomeSuperuser />
+    //                 </div>
+    //             </div>
+    //             <div style={styles.rightCol}>
+    //                 <div style={styles.flex}>
+    //                     <WelcomeSuperuser />
+    //                     <Spacer />
+    //                     <WelcomeSuperuser />
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     </>
+    // );
 };
 
 export default CustomerDashboard;

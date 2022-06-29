@@ -50,7 +50,6 @@ const App = () => {
         >
             <CustomRoutes>
                 <Route path="/configuration" element={<Configuration />} />
-                {/* <Route path="/segments" element={<Segments />} /> */}
             </CustomRoutes>
 
             <Resource name="products" {...products} />

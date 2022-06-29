@@ -13,20 +13,21 @@ const Dashboard = () => {
             setUserRole(identity.userRole);
         }
     }, [identity]);
+    if (identityLoading) return <>Loading...</>;
 
     if (userRole === 'SUPERUSER') {
         if (identityLoading) return <>Loading...</>;
-        // return <SuperuserDashboard />;
-        <>
-            <Resource name="products" list={ListGuesser} />
-        </>;
+        return <SuperuserDashboard />;
+        // <>
+        //     <Resource name="products" list={ListGuesser} />
+        // </>;
     }
-
-    if (identityLoading) return <>Loading...</>;
 
     return (
         <>
-            <Resource name="products" list={ListGuesser} />
+            {/* <Resource name="products" list={ListGuesser} /> */}
+            <CustomerDashboard />
+
             {/* {dataProvider
                 .getOne('products', {
                     id: '460c53df-cdaa-4bec-b6bc-3b5cfb7eba9c',
@@ -38,8 +39,6 @@ const Dashboard = () => {
                 .catch(error => {
                     console.log('error', error);
                 })} */}
-
-            {/* <CustomerDashboard /> */}
         </>
     );
 };

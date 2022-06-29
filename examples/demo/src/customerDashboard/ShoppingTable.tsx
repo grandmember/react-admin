@@ -1,31 +1,88 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     Title,
     useGetList,
     Datagrid,
+    NumberField,
+    DateField,
     TextField as TextFieldReactAdmin,
 } from 'react-admin';
 import { Card, Button, Toolbar, TextField } from '@mui/material';
+import axios from 'axios';
+
+const useFetchList = (method: any, url: any, body: any, options?: any) => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [result, setResult] = useState([]);
+    const [total, setTotal] = useState(0);
+    // const [serverError, setServerError] = useState(null);
+
+    useEffect(() => {
+        setIsLoading(true);
+        const fetchData = async () => {
+            try {
+                const resp = await axios({
+                    method: method,
+                    url: url,
+                    data: body,
+                    headers: {
+                        Authorization: `${localStorage.getItem('token')}`,
+                    },
+                });
+                const data: [] = await resp?.data.data;
+
+                setResult(data);
+                setTotal(data.length);
+                setIsLoading(false);
+            } catch (error) {
+                // setServerError(error);
+                setIsLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [url, method, body]);
+
+    console.log('useFetchList', {
+        method,
+        url,
+        body,
+        isLoading,
+        result,
+        total,
+    });
+    return { isLoading, result, total };
+};
 
 const ShoppingTable = () => {
     const [filter, setFilter] = useState('');
     const [page, setPage] = useState(1);
     const perPage = 10;
-    const sort = { field: 'id', order: 'ASC' };
-    const { data, total, isLoading } = useGetList('books', {
-        filter: { q: filter },
-        pagination: { page, perPage },
-        sort,
-    });
+    const sort = { field: 'productTitle', order: 'ASC' };
+    // const { data, total, isLoading } = useGetList('books', {
+    //     filter: { q: filter },
+    //     pagination: { page, perPage },
+    //     sort,
+    // });
+
+    const { result: data, total, isLoading } = useFetchList(
+        'GET',
+        'http://localhost:4000/v1/products',
+        null
+        // {
+        //     filter: { q: filter },
+        //     pagination: { page, perPage },
+        //     sort,
+        // }
+    );
 
     if (isLoading) {
         return <div>Loading...</div>;
     }
     return (
         <div>
-            <Title title="Book list" />
+            <Title title="Products List" />
             <TextField
-                label="Search"
+                label="Search products"
                 value={filter}
                 onChange={e => setFilter(e.target.value)}
                 variant="filled"
@@ -34,21 +91,26 @@ const ShoppingTable = () => {
             />
             <Card>
                 <Datagrid data={data} sort={sort}>
-                    {/* <TextFieldReactAdmin source="id" />
-                    <TextFieldReactAdmin source="title" />
-                    <TextFieldReactAdmin source="author" />
-                    <TextFieldReactAdmin source="year" /> */}
-
-                    {/* <TextField source="id" />
-                    <DateField source="createdAt" />
-                    <DateField source="updatedAt" />
-                    <TextField source="comment" />
-                    <TextField source="productTitle" />
-                    <NumberField source="productType" />
+                    {/* <TextFieldReactAdmin source="id" /> */}
+                    {/* <DateField source="createdAt" /> */}
+                    {/* <DateField source="updatedAt" /> */}
+                    {/* <TextFieldReactAdmin source="comment" /> */}
+                    <TextFieldReactAdmin source="productTitle" />
+                    {/* <NumberField source="productType" /> */}
                     <NumberField source="productCategory" />
                     <NumberField source="quantity" />
-                    <TextField source="productPhotoUrl" />
-                    <NumberField source="resalePricePerUnit" /> */}
+                    <TextFieldReactAdmin source="productPhotoUrl" />
+                    <NumberField source="resalePricePerUnit" />
+
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => {
+                            console.log('added to cart');
+                        }}
+                    >
+                        Add to cart
+                    </Button>
                 </Datagrid>
             </Card>
             <Toolbar>
