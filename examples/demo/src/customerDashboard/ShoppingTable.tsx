@@ -4,11 +4,13 @@ import {
     useGetList,
     Datagrid,
     NumberField,
+    useRecordContext,
     DateField,
     TextField as TextFieldReactAdmin,
 } from 'react-admin';
 import { Card, Button, Toolbar, TextField } from '@mui/material';
 import axios from 'axios';
+import LocalstorageCart from 'cart-localstorage';
 
 const useFetchList = (method: any, url: any, body: any, options?: any) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -53,6 +55,25 @@ const useFetchList = (method: any, url: any, body: any, options?: any) => {
     return { isLoading, result, total };
 };
 
+const AddToCartButton = () => {
+    const record = useRecordContext();
+    return (
+        <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+                console.log('add to cart');
+                console.log('record', record);
+                LocalstorageCart.add(record);
+
+                console.log('added:', LocalstorageCart.get());
+            }}
+        >
+            Add to cart
+        </Button>
+    );
+};
+
 const ShoppingTable = () => {
     const [filter, setFilter] = useState('');
     const [page, setPage] = useState(1);
@@ -81,14 +102,14 @@ const ShoppingTable = () => {
     return (
         <div>
             <Title title="Products List" />
-            <TextField
+            {/* <TextField
                 label="Search products"
                 value={filter}
                 onChange={e => setFilter(e.target.value)}
                 variant="filled"
                 size="small"
                 margin="dense"
-            />
+            /> */}
             <Card>
                 <Datagrid data={data} sort={sort}>
                     {/* <TextFieldReactAdmin source="id" /> */}
@@ -102,14 +123,15 @@ const ShoppingTable = () => {
                     <TextFieldReactAdmin source="productPhotoUrl" />
                     <NumberField source="resalePricePerUnit" />
 
+                    <AddToCartButton />
                     <Button
                         variant="contained"
                         color="primary"
                         onClick={() => {
-                            console.log('added to cart');
+                            console.log('bought');
                         }}
                     >
-                        Add to cart
+                        Buy now
                     </Button>
                 </Datagrid>
             </Card>

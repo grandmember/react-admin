@@ -9,13 +9,10 @@ import {
 } from 'react-admin';
 import { Card, Button, Toolbar, TextField } from '@mui/material';
 import axios from 'axios';
+import { total } from 'cart-localstorage';
 
 const ShoppingCart = () => {
-    return (
-        <>
-            <Card></Card>
-        </>
-    );
+    return <>Shopping cart will come here. Total: {total()}</>;
 };
 
 export default ShoppingCart;
